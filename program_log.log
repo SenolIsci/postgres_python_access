@@ -1,0 +1,1379 @@
+2021-04-12 17:32:59,887: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:33:00,099: INFO: execute_sql:48: execution sucessfull: CREATE TABLE IF NOT EXISTS entries(content TEXT, date TEXT);
+2021-04-12 17:33:00,312: INFO: execute_sql:48: execution sucessfull: CREATE TABLE IF NOT EXISTS users(
+        id SERIAL PRIMARY KEY,
+        first_name TEXT, 
+        surname TEXT, 
+        age INTEGER
+        );
+2021-04-12 17:33:00,513: INFO: execute_sql:48: execution sucessfull: INSERT INTO users (first_name, surname,age) VALUES ('Rolf','Smith',35);
+2021-04-12 17:33:00,714: INFO: execute_sql:48: execution sucessfull: INSERT INTO users (first_name, surname,age) VALUES ('John','Snow','19');
+2021-04-12 17:33:00,914: INFO: execute_sql:48: execution sucessfull: SELECT * FROM users WHERE first_name !='John' AND age > 19;
+2021-04-12 17:33:01,320: INFO: execute_sql:48: execution sucessfull: 
+            CREATE TABLE supplier_groups (
+                group_id SERIAL PRIMARY KEY,
+                group_name text NOT NULL
+            );
+            
+2021-04-12 17:33:01,536: INFO: execute_sql:48: execution sucessfull: 
+                CREATE TABLE suppliers (
+                supplier_id   SERIAL PRIMARY KEY,
+                supplier_name TEXT    NOT NULL,
+                group_id    INTEGER,
+                FOREIGN KEY (group_id)
+                REFERENCES supplier_groups (group_id) 
+                    ON UPDATE SET NULL
+                    ON DELETE SET NULL
+            );
+            
+2021-04-12 17:33:01,740: INFO: execute_sql:48: execution sucessfull: 
+
+            INSERT INTO supplier_groups (group_name)
+            VALUES
+            ('Domestic'),
+            ('Global'),
+            ('One-Time');
+            
+2021-04-12 17:33:01,945: INFO: execute_sql:48: execution sucessfull: INSERT INTO suppliers (supplier_name, group_id) VALUES ('HP', 2);
+2021-04-12 17:33:02,146: INFO: execute_sql:48: execution sucessfull: INSERT INTO suppliers (supplier_name, group_id) VALUES('XYZ Corp', 2);
+2021-04-12 17:33:02,346: INFO: execute_sql:48: execution sucessfull: INSERT INTO suppliers (supplier_name, group_id) VALUES('ABC Corp', 3);
+2021-04-12 17:33:02,348: INFO: close_connection:58: close connection.
+2021-04-12 17:33:02,753: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:33:02,947: INFO: execute_sql:48: execution sucessfull: 
+            SELECT supplier_name,supplier_groups.group_name 
+            FROM suppliers
+            INNER JOIN supplier_groups
+            ON suppliers.group_id = supplier_groups.group_id;
+            
+2021-04-12 17:33:02,949: INFO: close_connection:58: close connection.
+2021-04-12 17:33:03,353: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:33:03,552: INFO: execute_sql:48: execution sucessfull: DELETE FROM supplier_groups WHERE group_id = 3;
+2021-04-12 17:33:03,554: INFO: close_connection:58: close connection.
+2021-04-12 17:33:03,956: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:33:04,154: INFO: execute_sql:48: execution sucessfull: 
+            CREATE VIEW suplquery
+            AS 
+            SELECT supplier_name,supplier_groups.group_name 
+            FROM suppliers
+            INNER JOIN supplier_groups
+            ON suppliers.group_id = supplier_groups.group_id;
+            
+2021-04-12 17:33:04,348: INFO: execute_sql:48: execution sucessfull: SELECT * FROM suplquery;
+2021-04-12 17:33:04,350: INFO: close_connection:58: close connection.
+2021-04-12 17:43:24,948: ERROR: execute_sql:50: execution failure: CREATE SEQUENCE serial START 101;
+2021-04-12 17:43:24,954: ERROR: execute_sql:50: execution failure: SELECT nextval('serial');
+2021-04-12 17:43:37,475: INFO: execute_sql:52: execution sucessfull: PRAGMA foreign_keys = ON
+2021-04-12 17:43:37,477: INFO: open_connection:22: connection establisted to data.db
+2021-04-12 17:43:47,042: ERROR: execute_sql:54: execution failure: CREATE SEQUENCE serial START 101;
+2021-04-12 17:43:47,043: ERROR: execute_sql:54: execution failure: SELECT nextval('serial');
+2021-04-12 17:44:17,905: ERROR: execute_sql:54: execution failure: CREATE SEQUENCE serial START 101;
+2021-04-12 17:44:17,907: ERROR: execute_sql:54: execution failure: SELECT nextval('serial');
+2021-04-12 17:44:33,775: ERROR: execute_sql:54: execution failure: CREATE SEQUENCE serial START 101;
+2021-04-12 17:45:45,571: INFO: execute_sql:52: execution sucessfull: PRAGMA foreign_keys = ON
+2021-04-12 17:45:45,573: INFO: open_connection:22: connection establisted to data.db
+2021-04-12 17:45:45,575: ERROR: execute_sql:54: execution failure: CREATE SEQUENCE serial START 101;
+2021-04-12 17:45:45,576: ERROR: execute_sql:54: execution failure: SELECT nextval('serial');
+2021-04-12 17:46:37,968: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:46:38,161: INFO: execute_sql:48: execution sucessfull: CREATE TABLE IF NOT EXISTS entries(content TEXT, date TEXT);
+2021-04-12 17:46:38,353: INFO: execute_sql:48: execution sucessfull: CREATE TABLE IF NOT EXISTS users(
+        id SERIAL PRIMARY KEY,
+        first_name TEXT, 
+        surname TEXT, 
+        age INTEGER
+        );
+2021-04-12 17:46:38,552: INFO: execute_sql:48: execution sucessfull: INSERT INTO users (first_name, surname,age) VALUES ('Rolf','Smith',35);
+2021-04-12 17:46:38,747: INFO: execute_sql:48: execution sucessfull: INSERT INTO users (first_name, surname,age) VALUES ('John','Snow','19');
+2021-04-12 17:46:38,939: INFO: execute_sql:48: execution sucessfull: SELECT * FROM users WHERE first_name !='John' AND age > 19;
+2021-04-12 17:46:39,265: ERROR: execute_sql:50: execution failure: 
+            CREATE TABLE supplier_groups (
+                group_id SERIAL PRIMARY KEY,
+                group_name text NOT NULL
+            );
+            
+2021-04-12 17:46:39,331: ERROR: execute_sql:50: execution failure: 
+                CREATE TABLE suppliers (
+                supplier_id   SERIAL PRIMARY KEY,
+                supplier_name TEXT    NOT NULL,
+                group_id    INTEGER,
+                FOREIGN KEY (group_id)
+                REFERENCES supplier_groups (group_id) 
+                    ON UPDATE SET NULL
+                    ON DELETE SET NULL
+            );
+            
+2021-04-12 17:46:39,396: ERROR: execute_sql:50: execution failure: 
+
+            INSERT INTO supplier_groups (group_name)
+            VALUES
+            ('Domestic'),
+            ('Global'),
+            ('One-Time');
+            
+2021-04-12 17:46:39,462: ERROR: execute_sql:50: execution failure: INSERT INTO suppliers (supplier_name, group_id) VALUES ('HP', 2);
+2021-04-12 17:46:39,527: ERROR: execute_sql:50: execution failure: INSERT INTO suppliers (supplier_name, group_id) VALUES('XYZ Corp', 2);
+2021-04-12 17:46:39,592: ERROR: execute_sql:50: execution failure: INSERT INTO suppliers (supplier_name, group_id) VALUES('ABC Corp', 3);
+2021-04-12 17:46:39,594: INFO: close_connection:58: close connection.
+2021-04-12 17:46:40,315: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:46:40,509: INFO: execute_sql:48: execution sucessfull: 
+            SELECT supplier_name,supplier_groups.group_name 
+            FROM suppliers
+            INNER JOIN supplier_groups
+            ON suppliers.group_id = supplier_groups.group_id;
+            
+2021-04-12 17:46:40,512: INFO: close_connection:58: close connection.
+2021-04-12 17:46:40,924: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:46:41,119: INFO: execute_sql:48: execution sucessfull: DELETE FROM supplier_groups WHERE group_id = 3;
+2021-04-12 17:46:41,121: INFO: close_connection:58: close connection.
+2021-04-12 17:46:41,521: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:46:41,651: ERROR: execute_sql:50: execution failure: 
+            CREATE VIEW suplquery
+            AS 
+            SELECT supplier_name,supplier_groups.group_name 
+            FROM suppliers
+            INNER JOIN supplier_groups
+            ON suppliers.group_id = supplier_groups.group_id;
+            
+2021-04-12 17:46:41,718: ERROR: execute_sql:50: execution failure: SELECT * FROM suplquery;
+2021-04-12 17:47:08,652: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:47:08,858: INFO: execute_sql:48: execution sucessfull: CREATE TABLE IF NOT EXISTS entries(content TEXT, date TEXT);
+2021-04-12 17:47:09,069: INFO: execute_sql:48: execution sucessfull: CREATE TABLE IF NOT EXISTS users(
+        id SERIAL PRIMARY KEY,
+        first_name TEXT, 
+        surname TEXT, 
+        age INTEGER
+        );
+2021-04-12 17:47:09,267: INFO: execute_sql:48: execution sucessfull: INSERT INTO users (first_name, surname,age) VALUES ('Rolf','Smith',35);
+2021-04-12 17:47:09,465: INFO: execute_sql:48: execution sucessfull: INSERT INTO users (first_name, surname,age) VALUES ('John','Snow','19');
+2021-04-12 17:47:09,660: INFO: execute_sql:48: execution sucessfull: SELECT * FROM users WHERE first_name !='John' AND age > 19;
+2021-04-12 17:47:10,064: INFO: execute_sql:48: execution sucessfull: 
+            CREATE TABLE supplier_groups (
+                group_id SERIAL PRIMARY KEY,
+                group_name text NOT NULL
+            );
+            
+2021-04-12 17:47:10,274: INFO: execute_sql:48: execution sucessfull: 
+                CREATE TABLE suppliers (
+                supplier_id   SERIAL PRIMARY KEY,
+                supplier_name TEXT    NOT NULL,
+                group_id    INTEGER,
+                FOREIGN KEY (group_id)
+                REFERENCES supplier_groups (group_id) 
+                    ON UPDATE SET NULL
+                    ON DELETE SET NULL
+            );
+            
+2021-04-12 17:47:10,472: INFO: execute_sql:48: execution sucessfull: 
+
+            INSERT INTO supplier_groups (group_name)
+            VALUES
+            ('Domestic'),
+            ('Global'),
+            ('One-Time');
+            
+2021-04-12 17:47:10,670: INFO: execute_sql:48: execution sucessfull: INSERT INTO suppliers (supplier_name, group_id) VALUES ('HP', 2);
+2021-04-12 17:47:10,867: INFO: execute_sql:48: execution sucessfull: INSERT INTO suppliers (supplier_name, group_id) VALUES('XYZ Corp', 2);
+2021-04-12 17:47:11,064: INFO: execute_sql:48: execution sucessfull: INSERT INTO suppliers (supplier_name, group_id) VALUES('ABC Corp', 3);
+2021-04-12 17:47:11,066: INFO: close_connection:58: close connection.
+2021-04-12 17:47:11,462: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:47:11,653: INFO: execute_sql:48: execution sucessfull: 
+            SELECT supplier_name,supplier_groups.group_name 
+            FROM suppliers
+            INNER JOIN supplier_groups
+            ON suppliers.group_id = supplier_groups.group_id;
+            
+2021-04-12 17:47:11,656: INFO: close_connection:58: close connection.
+2021-04-12 17:47:12,056: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:47:12,252: INFO: execute_sql:48: execution sucessfull: DELETE FROM supplier_groups WHERE group_id = 3;
+2021-04-12 17:47:12,254: INFO: close_connection:58: close connection.
+2021-04-12 17:47:12,659: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:47:12,862: INFO: execute_sql:48: execution sucessfull: 
+            CREATE VIEW suplquery
+            AS 
+            SELECT supplier_name,supplier_groups.group_name 
+            FROM suppliers
+            INNER JOIN supplier_groups
+            ON suppliers.group_id = supplier_groups.group_id;
+            
+2021-04-12 17:47:13,058: INFO: execute_sql:48: execution sucessfull: SELECT * FROM suplquery;
+2021-04-12 17:47:13,060: INFO: close_connection:58: close connection.
+2021-04-12 17:47:13,478: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:47:13,684: INFO: execute_sql:48: execution sucessfull: CREATE SEQUENCE serial START 101;
+2021-04-12 17:47:13,888: INFO: execute_sql:48: execution sucessfull: SELECT nextval('serial');
+2021-04-12 17:47:46,198: INFO: execute_sql:48: execution sucessfull: SELECT nextval('serial');
+2021-04-12 17:48:13,188: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:48:13,387: INFO: execute_sql:48: execution sucessfull: CREATE TABLE IF NOT EXISTS entries(content TEXT, date TEXT);
+2021-04-12 17:48:13,585: INFO: execute_sql:48: execution sucessfull: CREATE TABLE IF NOT EXISTS users(
+        id SERIAL PRIMARY KEY,
+        first_name TEXT, 
+        surname TEXT, 
+        age INTEGER
+        );
+2021-04-12 17:48:13,786: INFO: execute_sql:48: execution sucessfull: INSERT INTO users (first_name, surname,age) VALUES ('Rolf','Smith',35);
+2021-04-12 17:48:13,987: INFO: execute_sql:48: execution sucessfull: INSERT INTO users (first_name, surname,age) VALUES ('John','Snow','19');
+2021-04-12 17:48:14,184: INFO: execute_sql:48: execution sucessfull: SELECT * FROM users WHERE first_name !='John' AND age > 19;
+2021-04-12 17:48:14,523: ERROR: execute_sql:50: execution failure: 
+            CREATE TABLE supplier_groups (
+                group_id SERIAL PRIMARY KEY,
+                group_name text NOT NULL
+            );
+            
+2021-04-12 17:48:14,590: ERROR: execute_sql:50: execution failure: 
+                CREATE TABLE suppliers (
+                supplier_id   SERIAL PRIMARY KEY,
+                supplier_name TEXT    NOT NULL,
+                group_id    INTEGER,
+                FOREIGN KEY (group_id)
+                REFERENCES supplier_groups (group_id) 
+                    ON UPDATE SET NULL
+                    ON DELETE SET NULL
+            );
+            
+2021-04-12 17:48:14,657: ERROR: execute_sql:50: execution failure: 
+
+            INSERT INTO supplier_groups (group_name)
+            VALUES
+            ('Domestic'),
+            ('Global'),
+            ('One-Time');
+            
+2021-04-12 17:48:14,724: ERROR: execute_sql:50: execution failure: INSERT INTO suppliers (supplier_name, group_id) VALUES ('HP', 2);
+2021-04-12 17:48:14,791: ERROR: execute_sql:50: execution failure: INSERT INTO suppliers (supplier_name, group_id) VALUES('XYZ Corp', 2);
+2021-04-12 17:48:14,859: ERROR: execute_sql:50: execution failure: INSERT INTO suppliers (supplier_name, group_id) VALUES('ABC Corp', 3);
+2021-04-12 17:48:14,862: INFO: close_connection:58: close connection.
+2021-04-12 17:48:15,411: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:48:15,604: INFO: execute_sql:48: execution sucessfull: 
+            SELECT supplier_name,supplier_groups.group_name 
+            FROM suppliers
+            INNER JOIN supplier_groups
+            ON suppliers.group_id = supplier_groups.group_id;
+            
+2021-04-12 17:48:15,606: INFO: close_connection:58: close connection.
+2021-04-12 17:48:16,003: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:48:16,193: INFO: execute_sql:48: execution sucessfull: DELETE FROM supplier_groups WHERE group_id = 3;
+2021-04-12 17:48:16,196: INFO: close_connection:58: close connection.
+2021-04-12 17:48:16,600: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:48:16,732: ERROR: execute_sql:50: execution failure: 
+            CREATE VIEW suplquery
+            AS 
+            SELECT supplier_name,supplier_groups.group_name 
+            FROM suppliers
+            INNER JOIN supplier_groups
+            ON suppliers.group_id = supplier_groups.group_id;
+            
+2021-04-12 17:48:16,798: ERROR: execute_sql:50: execution failure: SELECT * FROM suplquery;
+2021-04-12 17:48:49,908: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:48:50,103: INFO: execute_sql:48: execution sucessfull: CREATE TABLE IF NOT EXISTS entries(content TEXT, date TEXT);
+2021-04-12 17:48:50,296: INFO: execute_sql:48: execution sucessfull: CREATE TABLE IF NOT EXISTS users(
+        id SERIAL PRIMARY KEY,
+        first_name TEXT, 
+        surname TEXT, 
+        age INTEGER
+        );
+2021-04-12 17:48:50,493: INFO: execute_sql:48: execution sucessfull: INSERT INTO users (first_name, surname,age) VALUES ('Rolf','Smith',35);
+2021-04-12 17:48:50,690: INFO: execute_sql:48: execution sucessfull: INSERT INTO users (first_name, surname,age) VALUES ('John','Snow','19');
+2021-04-12 17:48:50,883: INFO: execute_sql:48: execution sucessfull: SELECT * FROM users WHERE first_name !='John' AND age > 19;
+2021-04-12 17:48:51,214: ERROR: execute_sql:50: execution failure: 
+            CREATE TABLE supplier_groups (
+                group_id SERIAL PRIMARY KEY,
+                group_name text NOT NULL
+            );
+            
+2021-04-12 17:48:51,280: ERROR: execute_sql:50: execution failure: 
+                CREATE TABLE suppliers (
+                supplier_id   SERIAL PRIMARY KEY,
+                supplier_name TEXT    NOT NULL,
+                group_id    INTEGER,
+                FOREIGN KEY (group_id)
+                REFERENCES supplier_groups (group_id) 
+                    ON UPDATE SET NULL
+                    ON DELETE SET NULL
+            );
+            
+2021-04-12 17:48:51,346: ERROR: execute_sql:50: execution failure: 
+
+            INSERT INTO supplier_groups (group_name)
+            VALUES
+            ('Domestic'),
+            ('Global'),
+            ('One-Time');
+            
+2021-04-12 17:48:51,412: ERROR: execute_sql:50: execution failure: INSERT INTO suppliers (supplier_name, group_id) VALUES ('HP', 2);
+2021-04-12 17:48:51,478: ERROR: execute_sql:50: execution failure: INSERT INTO suppliers (supplier_name, group_id) VALUES('XYZ Corp', 2);
+2021-04-12 17:48:51,544: ERROR: execute_sql:50: execution failure: INSERT INTO suppliers (supplier_name, group_id) VALUES('ABC Corp', 3);
+2021-04-12 17:48:51,546: INFO: close_connection:58: close connection.
+2021-04-12 17:48:51,955: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:48:52,152: INFO: execute_sql:48: execution sucessfull: 
+            SELECT supplier_name,supplier_groups.group_name 
+            FROM suppliers
+            INNER JOIN supplier_groups
+            ON suppliers.group_id = supplier_groups.group_id;
+            
+2021-04-12 17:48:52,155: INFO: close_connection:58: close connection.
+2021-04-12 17:48:52,558: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:48:52,752: INFO: execute_sql:48: execution sucessfull: DELETE FROM supplier_groups WHERE group_id = 3;
+2021-04-12 17:48:52,755: INFO: close_connection:58: close connection.
+2021-04-12 17:48:53,163: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:48:53,295: ERROR: execute_sql:50: execution failure: 
+            CREATE VIEW suplquery
+            AS 
+            SELECT supplier_name,supplier_groups.group_name 
+            FROM suppliers
+            INNER JOIN supplier_groups
+            ON suppliers.group_id = supplier_groups.group_id;
+            
+2021-04-12 17:48:53,361: ERROR: execute_sql:50: execution failure: SELECT * FROM suplquery;
+2021-04-12 17:49:29,615: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:49:29,819: INFO: execute_sql:48: execution sucessfull: CREATE TABLE IF NOT EXISTS entries(content TEXT, date TEXT);
+2021-04-12 17:49:30,025: INFO: execute_sql:48: execution sucessfull: CREATE TABLE IF NOT EXISTS users(
+        id SERIAL PRIMARY KEY,
+        first_name TEXT, 
+        surname TEXT, 
+        age INTEGER
+        );
+2021-04-12 17:49:30,218: INFO: execute_sql:48: execution sucessfull: INSERT INTO users (first_name, surname,age) VALUES ('Rolf','Smith',35);
+2021-04-12 17:49:30,410: INFO: execute_sql:48: execution sucessfull: INSERT INTO users (first_name, surname,age) VALUES ('John','Snow','19');
+2021-04-12 17:49:30,601: INFO: execute_sql:48: execution sucessfull: SELECT * FROM users WHERE first_name !='John' AND age > 19;
+2021-04-12 17:49:30,995: INFO: execute_sql:48: execution sucessfull: 
+            CREATE TABLE supplier_groups (
+                group_id SERIAL PRIMARY KEY,
+                group_name text NOT NULL
+            );
+            
+2021-04-12 17:49:31,202: INFO: execute_sql:48: execution sucessfull: 
+                CREATE TABLE suppliers (
+                supplier_id   SERIAL PRIMARY KEY,
+                supplier_name TEXT    NOT NULL,
+                group_id    INTEGER,
+                FOREIGN KEY (group_id)
+                REFERENCES supplier_groups (group_id) 
+                    ON UPDATE SET NULL
+                    ON DELETE SET NULL
+            );
+            
+2021-04-12 17:49:31,396: INFO: execute_sql:48: execution sucessfull: 
+
+            INSERT INTO supplier_groups (group_name)
+            VALUES
+            ('Domestic'),
+            ('Global'),
+            ('One-Time');
+            
+2021-04-12 17:49:31,590: INFO: execute_sql:48: execution sucessfull: INSERT INTO suppliers (supplier_name, group_id) VALUES ('HP', 2);
+2021-04-12 17:49:31,784: INFO: execute_sql:48: execution sucessfull: INSERT INTO suppliers (supplier_name, group_id) VALUES('XYZ Corp', 2);
+2021-04-12 17:49:31,979: INFO: execute_sql:48: execution sucessfull: INSERT INTO suppliers (supplier_name, group_id) VALUES('ABC Corp', 3);
+2021-04-12 17:49:31,981: INFO: close_connection:58: close connection.
+2021-04-12 17:49:32,534: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:49:32,729: INFO: execute_sql:48: execution sucessfull: 
+            SELECT supplier_name,supplier_groups.group_name 
+            FROM suppliers
+            INNER JOIN supplier_groups
+            ON suppliers.group_id = supplier_groups.group_id;
+            
+2021-04-12 17:49:32,731: INFO: close_connection:58: close connection.
+2021-04-12 17:49:33,143: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:49:33,343: INFO: execute_sql:48: execution sucessfull: DELETE FROM supplier_groups WHERE group_id = 3;
+2021-04-12 17:49:33,345: INFO: close_connection:58: close connection.
+2021-04-12 17:49:33,750: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:49:33,952: INFO: execute_sql:48: execution sucessfull: 
+            CREATE VIEW suplquery
+            AS 
+            SELECT supplier_name,supplier_groups.group_name 
+            FROM suppliers
+            INNER JOIN supplier_groups
+            ON suppliers.group_id = supplier_groups.group_id;
+            
+2021-04-12 17:49:34,147: INFO: execute_sql:48: execution sucessfull: SELECT * FROM suplquery;
+2021-04-12 17:49:34,150: INFO: close_connection:58: close connection.
+2021-04-12 17:49:34,550: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:49:34,680: ERROR: execute_sql:50: execution failure: CREATE SEQUENCE serial START 101;
+2021-04-12 17:49:34,746: ERROR: execute_sql:50: execution failure: SELECT nextval('serial');
+2021-04-12 17:49:54,819: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:49:54,947: ERROR: execute_sql:50: execution failure: CREATE SEQUENCE serial START 101;
+2021-04-12 17:49:55,011: ERROR: execute_sql:50: execution failure: SELECT nextval('serial');
+2021-04-12 17:50:02,775: ERROR: execute_sql:50: execution failure: SELECT nextval('serial');
+2021-04-12 17:50:11,214: ERROR: execute_sql:50: execution failure: CREATE SEQUENCE serial START 101;
+2021-04-12 17:50:20,452: ERROR: execute_sql:50: execution failure: SELECT nextval('serial');
+2021-04-12 17:51:44,959: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:51:45,152: INFO: execute_sql:48: execution sucessfull: CREATE TABLE IF NOT EXISTS entries(content TEXT, date TEXT);
+2021-04-12 17:51:45,343: INFO: execute_sql:48: execution sucessfull: CREATE TABLE IF NOT EXISTS users(
+        id SERIAL PRIMARY KEY,
+        first_name TEXT, 
+        surname TEXT, 
+        age INTEGER
+        );
+2021-04-12 17:51:45,538: INFO: execute_sql:48: execution sucessfull: INSERT INTO users (first_name, surname,age) VALUES ('Rolf','Smith',35);
+2021-04-12 17:51:45,733: INFO: execute_sql:48: execution sucessfull: INSERT INTO users (first_name, surname,age) VALUES ('John','Snow','19');
+2021-04-12 17:51:45,924: INFO: execute_sql:48: execution sucessfull: SELECT * FROM users WHERE first_name !='John' AND age > 19;
+2021-04-12 17:51:46,246: ERROR: execute_sql:50: execution failure: 
+            CREATE TABLE supplier_groups (
+                group_id SERIAL PRIMARY KEY,
+                group_name text NOT NULL
+            );
+            
+2021-04-12 17:51:46,311: ERROR: execute_sql:50: execution failure: 
+                CREATE TABLE suppliers (
+                supplier_id   SERIAL PRIMARY KEY,
+                supplier_name TEXT    NOT NULL,
+                group_id    INTEGER,
+                FOREIGN KEY (group_id)
+                REFERENCES supplier_groups (group_id) 
+                    ON UPDATE SET NULL
+                    ON DELETE SET NULL
+            );
+            
+2021-04-12 17:51:46,376: ERROR: execute_sql:50: execution failure: 
+
+            INSERT INTO supplier_groups (group_name)
+            VALUES
+            ('Domestic'),
+            ('Global'),
+            ('One-Time');
+            
+2021-04-12 17:51:46,441: ERROR: execute_sql:50: execution failure: INSERT INTO suppliers (supplier_name, group_id) VALUES ('HP', 2);
+2021-04-12 17:51:46,506: ERROR: execute_sql:50: execution failure: INSERT INTO suppliers (supplier_name, group_id) VALUES('XYZ Corp', 2);
+2021-04-12 17:51:46,571: ERROR: execute_sql:50: execution failure: INSERT INTO suppliers (supplier_name, group_id) VALUES('ABC Corp', 3);
+2021-04-12 17:51:46,574: INFO: close_connection:59: close connection.
+2021-04-12 17:51:47,237: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:51:47,432: INFO: execute_sql:48: execution sucessfull: 
+            SELECT supplier_name,supplier_groups.group_name 
+            FROM suppliers
+            INNER JOIN supplier_groups
+            ON suppliers.group_id = supplier_groups.group_id;
+            
+2021-04-12 17:51:47,434: INFO: close_connection:59: close connection.
+2021-04-12 17:51:47,848: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:51:48,047: INFO: execute_sql:48: execution sucessfull: DELETE FROM supplier_groups WHERE group_id = 3;
+2021-04-12 17:51:48,049: INFO: close_connection:59: close connection.
+2021-04-12 17:51:48,452: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:51:48,583: ERROR: execute_sql:50: execution failure: 
+            CREATE VIEW suplquery
+            AS 
+            SELECT supplier_name,supplier_groups.group_name 
+            FROM suppliers
+            INNER JOIN supplier_groups
+            ON suppliers.group_id = supplier_groups.group_id;
+            
+2021-04-12 17:51:48,648: ERROR: execute_sql:50: execution failure: SELECT * FROM suplquery;
+2021-04-12 17:54:26,132: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:54:26,325: INFO: execute_sql:48: execution sucessfull: CREATE TABLE IF NOT EXISTS entries(content TEXT, date TEXT);
+2021-04-12 17:54:26,516: INFO: execute_sql:48: execution sucessfull: CREATE TABLE IF NOT EXISTS users(
+        id SERIAL PRIMARY KEY,
+        first_name TEXT, 
+        surname TEXT, 
+        age INTEGER
+        );
+2021-04-12 17:54:26,709: INFO: execute_sql:48: execution sucessfull: INSERT INTO users (first_name, surname,age) VALUES ('Rolf','Smith',35);
+2021-04-12 17:54:26,902: INFO: execute_sql:48: execution sucessfull: INSERT INTO users (first_name, surname,age) VALUES ('John','Snow','19');
+2021-04-12 17:54:27,093: INFO: execute_sql:48: execution sucessfull: SELECT * FROM users WHERE first_name !='John' AND age > 19;
+2021-04-12 17:54:27,416: ERROR: execute_sql:50: execution failure: 
+            CREATE TABLE supplier_groups (
+                group_id SERIAL PRIMARY KEY,
+                group_name text NOT NULL
+            );
+            
+2021-04-12 17:54:27,481: ERROR: execute_sql:50: execution failure: 
+                CREATE TABLE suppliers (
+                supplier_id   SERIAL PRIMARY KEY,
+                supplier_name TEXT    NOT NULL,
+                group_id    INTEGER,
+                FOREIGN KEY (group_id)
+                REFERENCES supplier_groups (group_id) 
+                    ON UPDATE SET NULL
+                    ON DELETE SET NULL
+            );
+            
+2021-04-12 17:54:27,546: ERROR: execute_sql:50: execution failure: 
+
+            INSERT INTO supplier_groups (group_name)
+            VALUES
+            ('Domestic'),
+            ('Global'),
+            ('One-Time');
+            
+2021-04-12 17:54:27,611: ERROR: execute_sql:50: execution failure: INSERT INTO suppliers (supplier_name, group_id) VALUES ('HP', 2);
+2021-04-12 17:54:27,676: ERROR: execute_sql:50: execution failure: INSERT INTO suppliers (supplier_name, group_id) VALUES('XYZ Corp', 2);
+2021-04-12 17:54:27,741: ERROR: execute_sql:50: execution failure: INSERT INTO suppliers (supplier_name, group_id) VALUES('ABC Corp', 3);
+2021-04-12 17:54:27,743: INFO: close_connection:59: close connection.
+2021-04-12 17:54:28,289: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:54:28,484: INFO: execute_sql:48: execution sucessfull: 
+            SELECT supplier_name,supplier_groups.group_name 
+            FROM suppliers
+            INNER JOIN supplier_groups
+            ON suppliers.group_id = supplier_groups.group_id;
+            
+2021-04-12 17:54:28,487: INFO: close_connection:59: close connection.
+2021-04-12 17:54:28,887: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:54:29,083: INFO: execute_sql:48: execution sucessfull: DELETE FROM supplier_groups WHERE group_id = 3;
+2021-04-12 17:54:29,085: INFO: close_connection:59: close connection.
+2021-04-12 17:54:29,485: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:54:29,613: ERROR: execute_sql:50: execution failure: 
+            CREATE VIEW suplquery
+            AS 
+            SELECT supplier_name,supplier_groups.group_name 
+            FROM suppliers
+            INNER JOIN supplier_groups
+            ON suppliers.group_id = supplier_groups.group_id;
+            
+2021-04-12 17:54:29,679: ERROR: execute_sql:50: execution failure: SELECT * FROM suplquery;
+2021-04-12 17:54:48,409: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:54:48,614: INFO: execute_sql:48: execution sucessfull: CREATE TABLE IF NOT EXISTS entries(content TEXT, date TEXT);
+2021-04-12 17:54:48,823: INFO: execute_sql:48: execution sucessfull: CREATE TABLE IF NOT EXISTS users(
+        id SERIAL PRIMARY KEY,
+        first_name TEXT, 
+        surname TEXT, 
+        age INTEGER
+        );
+2021-04-12 17:54:49,017: INFO: execute_sql:48: execution sucessfull: INSERT INTO users (first_name, surname,age) VALUES ('Rolf','Smith',35);
+2021-04-12 17:54:49,213: INFO: execute_sql:48: execution sucessfull: INSERT INTO users (first_name, surname,age) VALUES ('John','Snow','19');
+2021-04-12 17:54:49,403: INFO: execute_sql:48: execution sucessfull: SELECT * FROM users WHERE first_name !='John' AND age > 19;
+2021-04-12 17:54:49,797: INFO: execute_sql:48: execution sucessfull: 
+            CREATE TABLE supplier_groups (
+                group_id SERIAL PRIMARY KEY,
+                group_name text NOT NULL
+            );
+            
+2021-04-12 17:54:50,003: INFO: execute_sql:48: execution sucessfull: 
+                CREATE TABLE suppliers (
+                supplier_id   SERIAL PRIMARY KEY,
+                supplier_name TEXT    NOT NULL,
+                group_id    INTEGER,
+                FOREIGN KEY (group_id)
+                REFERENCES supplier_groups (group_id) 
+                    ON UPDATE SET NULL
+                    ON DELETE SET NULL
+            );
+            
+2021-04-12 17:54:50,198: INFO: execute_sql:48: execution sucessfull: 
+
+            INSERT INTO supplier_groups (group_name)
+            VALUES
+            ('Domestic'),
+            ('Global'),
+            ('One-Time');
+            
+2021-04-12 17:54:50,392: INFO: execute_sql:48: execution sucessfull: INSERT INTO suppliers (supplier_name, group_id) VALUES ('HP', 2);
+2021-04-12 17:54:50,585: INFO: execute_sql:48: execution sucessfull: INSERT INTO suppliers (supplier_name, group_id) VALUES('XYZ Corp', 2);
+2021-04-12 17:54:50,778: INFO: execute_sql:48: execution sucessfull: INSERT INTO suppliers (supplier_name, group_id) VALUES('ABC Corp', 3);
+2021-04-12 17:54:50,780: INFO: close_connection:59: close connection.
+2021-04-12 17:54:51,170: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:54:51,357: INFO: execute_sql:48: execution sucessfull: 
+            SELECT supplier_name,supplier_groups.group_name 
+            FROM suppliers
+            INNER JOIN supplier_groups
+            ON suppliers.group_id = supplier_groups.group_id;
+            
+2021-04-12 17:54:51,361: INFO: close_connection:59: close connection.
+2021-04-12 17:54:51,766: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:54:51,965: INFO: execute_sql:48: execution sucessfull: DELETE FROM supplier_groups WHERE group_id = 3;
+2021-04-12 17:54:51,968: INFO: close_connection:59: close connection.
+2021-04-12 17:54:52,384: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:54:52,592: INFO: execute_sql:48: execution sucessfull: 
+            CREATE VIEW suplquery
+            AS 
+            SELECT supplier_name,supplier_groups.group_name 
+            FROM suppliers
+            INNER JOIN supplier_groups
+            ON suppliers.group_id = supplier_groups.group_id;
+            
+2021-04-12 17:54:52,793: INFO: execute_sql:48: execution sucessfull: SELECT * FROM suplquery;
+2021-04-12 17:54:52,795: INFO: close_connection:59: close connection.
+2021-04-12 17:54:53,190: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:54:53,389: INFO: execute_sql:48: execution sucessfull: CREATE SEQUENCE serial START 101;
+2021-04-12 17:54:53,581: INFO: execute_sql:48: execution sucessfull: SELECT nextval('serial');
+2021-04-12 17:54:53,584: INFO: close_connection:59: close connection.
+2021-04-12 17:55:51,284: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:55:51,474: INFO: execute_sql:48: execution sucessfull: CREATE TABLE IF NOT EXISTS entries(content TEXT, date TEXT);
+2021-04-12 17:55:51,664: INFO: execute_sql:48: execution sucessfull: CREATE TABLE IF NOT EXISTS users(
+        id SERIAL PRIMARY KEY,
+        first_name TEXT, 
+        surname TEXT, 
+        age INTEGER
+        );
+2021-04-12 17:55:51,856: INFO: execute_sql:48: execution sucessfull: INSERT INTO users (first_name, surname,age) VALUES ('Rolf','Smith',35);
+2021-04-12 17:55:52,060: INFO: execute_sql:48: execution sucessfull: INSERT INTO users (first_name, surname,age) VALUES ('John','Snow','19');
+2021-04-12 17:55:52,250: INFO: execute_sql:48: execution sucessfull: SELECT * FROM users WHERE first_name !='John' AND age > 19;
+2021-04-12 17:55:52,570: ERROR: execute_sql:50: execution failure: 
+            CREATE TABLE supplier_groups (
+                group_id SERIAL PRIMARY KEY,
+                group_name text NOT NULL
+            );
+            
+2021-04-12 17:55:52,635: ERROR: execute_sql:50: execution failure: 
+                CREATE TABLE suppliers (
+                supplier_id   SERIAL PRIMARY KEY,
+                supplier_name TEXT    NOT NULL,
+                group_id    INTEGER,
+                FOREIGN KEY (group_id)
+                REFERENCES supplier_groups (group_id) 
+                    ON UPDATE SET NULL
+                    ON DELETE SET NULL
+            );
+            
+2021-04-12 17:55:52,699: ERROR: execute_sql:50: execution failure: 
+
+            INSERT INTO supplier_groups (group_name)
+            VALUES
+            ('Domestic'),
+            ('Global'),
+            ('One-Time');
+            
+2021-04-12 17:55:52,764: ERROR: execute_sql:50: execution failure: INSERT INTO suppliers (supplier_name, group_id) VALUES ('HP', 2);
+2021-04-12 17:55:52,829: ERROR: execute_sql:50: execution failure: INSERT INTO suppliers (supplier_name, group_id) VALUES('XYZ Corp', 2);
+2021-04-12 17:55:52,893: ERROR: execute_sql:50: execution failure: INSERT INTO suppliers (supplier_name, group_id) VALUES('ABC Corp', 3);
+2021-04-12 17:55:52,895: INFO: close_connection:59: close connection.
+2021-04-12 17:55:53,309: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:55:53,508: INFO: execute_sql:48: execution sucessfull: 
+            SELECT supplier_name,supplier_groups.group_name 
+            FROM suppliers
+            INNER JOIN supplier_groups
+            ON suppliers.group_id = supplier_groups.group_id;
+            
+2021-04-12 17:55:53,511: INFO: close_connection:59: close connection.
+2021-04-12 17:55:53,913: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:55:54,107: INFO: execute_sql:48: execution sucessfull: DELETE FROM supplier_groups WHERE group_id = 3;
+2021-04-12 17:55:54,110: INFO: close_connection:59: close connection.
+2021-04-12 17:55:54,508: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:55:54,639: ERROR: execute_sql:50: execution failure: 
+            CREATE VIEW suplquery
+            AS 
+            SELECT supplier_name,supplier_groups.group_name 
+            FROM suppliers
+            INNER JOIN supplier_groups
+            ON suppliers.group_id = supplier_groups.group_id;
+            
+2021-04-12 17:55:54,706: ERROR: execute_sql:50: execution failure: SELECT * FROM suplquery;
+2021-04-12 17:57:41,651: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:57:41,841: INFO: execute_sql:48: execution sucessfull: CREATE TABLE IF NOT EXISTS entries(content TEXT, date TEXT);
+2021-04-12 17:57:42,032: INFO: execute_sql:48: execution sucessfull: CREATE TABLE IF NOT EXISTS users(
+        id SERIAL PRIMARY KEY,
+        first_name TEXT, 
+        surname TEXT, 
+        age INTEGER
+        );
+2021-04-12 17:57:42,229: INFO: execute_sql:48: execution sucessfull: INSERT INTO users (first_name, surname,age) VALUES ('Rolf','Smith',35);
+2021-04-12 17:57:42,423: INFO: execute_sql:48: execution sucessfull: INSERT INTO users (first_name, surname,age) VALUES ('John','Snow','19');
+2021-04-12 17:57:42,614: INFO: execute_sql:48: execution sucessfull: SELECT * FROM users WHERE first_name !='John' AND age > 19;
+2021-04-12 17:57:42,937: ERROR: execute_sql:50: execution failure: 
+            CREATE TABLE supplier_groups (
+                group_id SERIAL PRIMARY KEY,
+                group_name text NOT NULL
+            );
+            
+2021-04-12 17:57:43,002: ERROR: execute_sql:50: execution failure: 
+                CREATE TABLE suppliers (
+                supplier_id   SERIAL PRIMARY KEY,
+                supplier_name TEXT    NOT NULL,
+                group_id    INTEGER,
+                FOREIGN KEY (group_id)
+                REFERENCES supplier_groups (group_id) 
+                    ON UPDATE SET NULL
+                    ON DELETE SET NULL
+            );
+            
+2021-04-12 17:57:43,067: ERROR: execute_sql:50: execution failure: 
+
+            INSERT INTO supplier_groups (group_name)
+            VALUES
+            ('Domestic'),
+            ('Global'),
+            ('One-Time');
+            
+2021-04-12 17:57:43,132: ERROR: execute_sql:50: execution failure: INSERT INTO suppliers (supplier_name, group_id) VALUES ('HP', 2);
+2021-04-12 17:57:43,197: ERROR: execute_sql:50: execution failure: INSERT INTO suppliers (supplier_name, group_id) VALUES('XYZ Corp', 2);
+2021-04-12 17:57:43,262: ERROR: execute_sql:50: execution failure: INSERT INTO suppliers (supplier_name, group_id) VALUES('ABC Corp', 3);
+2021-04-12 17:57:43,264: INFO: close_connection:59: close connection.
+2021-04-12 17:57:43,669: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:57:43,864: INFO: execute_sql:48: execution sucessfull: 
+            SELECT supplier_name,supplier_groups.group_name 
+            FROM suppliers
+            INNER JOIN supplier_groups
+            ON suppliers.group_id = supplier_groups.group_id;
+            
+2021-04-12 17:57:43,867: INFO: close_connection:59: close connection.
+2021-04-12 17:57:44,273: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:57:44,468: INFO: execute_sql:48: execution sucessfull: DELETE FROM supplier_groups WHERE group_id = 3;
+2021-04-12 17:57:44,471: INFO: close_connection:59: close connection.
+2021-04-12 17:57:44,873: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:57:45,074: INFO: execute_sql:48: execution sucessfull: 
+            CREATE OR REPLACE VIEW suplquery
+            AS 
+            SELECT supplier_name,supplier_groups.group_name 
+            FROM suppliers
+            INNER JOIN supplier_groups
+            ON suppliers.group_id = supplier_groups.group_id;
+            
+2021-04-12 17:57:45,270: INFO: execute_sql:48: execution sucessfull: SELECT * FROM suplquery;
+2021-04-12 17:57:45,272: INFO: close_connection:59: close connection.
+2021-04-12 17:57:45,668: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:57:45,859: INFO: execute_sql:48: execution sucessfull: CREATE SEQUENCE IF NOT EXISTS serial START 101;
+2021-04-12 17:57:46,051: INFO: execute_sql:48: execution sucessfull: SELECT nextval('serial');
+2021-04-12 17:57:46,053: INFO: close_connection:59: close connection.
+2021-04-12 17:57:54,374: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:57:54,567: INFO: execute_sql:48: execution sucessfull: CREATE TABLE IF NOT EXISTS entries(content TEXT, date TEXT);
+2021-04-12 17:57:54,758: INFO: execute_sql:48: execution sucessfull: CREATE TABLE IF NOT EXISTS users(
+        id SERIAL PRIMARY KEY,
+        first_name TEXT, 
+        surname TEXT, 
+        age INTEGER
+        );
+2021-04-12 17:57:54,953: INFO: execute_sql:48: execution sucessfull: INSERT INTO users (first_name, surname,age) VALUES ('Rolf','Smith',35);
+2021-04-12 17:57:55,146: INFO: execute_sql:48: execution sucessfull: INSERT INTO users (first_name, surname,age) VALUES ('John','Snow','19');
+2021-04-12 17:57:55,338: INFO: execute_sql:48: execution sucessfull: SELECT * FROM users WHERE first_name !='John' AND age > 19;
+2021-04-12 17:57:55,659: ERROR: execute_sql:50: execution failure: 
+            CREATE TABLE supplier_groups (
+                group_id SERIAL PRIMARY KEY,
+                group_name text NOT NULL
+            );
+            
+2021-04-12 17:57:55,725: ERROR: execute_sql:50: execution failure: 
+                CREATE TABLE suppliers (
+                supplier_id   SERIAL PRIMARY KEY,
+                supplier_name TEXT    NOT NULL,
+                group_id    INTEGER,
+                FOREIGN KEY (group_id)
+                REFERENCES supplier_groups (group_id) 
+                    ON UPDATE SET NULL
+                    ON DELETE SET NULL
+            );
+            
+2021-04-12 17:57:55,789: ERROR: execute_sql:50: execution failure: 
+
+            INSERT INTO supplier_groups (group_name)
+            VALUES
+            ('Domestic'),
+            ('Global'),
+            ('One-Time');
+            
+2021-04-12 17:57:55,854: ERROR: execute_sql:50: execution failure: INSERT INTO suppliers (supplier_name, group_id) VALUES ('HP', 2);
+2021-04-12 17:57:55,919: ERROR: execute_sql:50: execution failure: INSERT INTO suppliers (supplier_name, group_id) VALUES('XYZ Corp', 2);
+2021-04-12 17:57:55,985: ERROR: execute_sql:50: execution failure: INSERT INTO suppliers (supplier_name, group_id) VALUES('ABC Corp', 3);
+2021-04-12 17:57:55,987: INFO: close_connection:59: close connection.
+2021-04-12 17:57:56,391: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:57:56,587: INFO: execute_sql:48: execution sucessfull: 
+            SELECT supplier_name,supplier_groups.group_name 
+            FROM suppliers
+            INNER JOIN supplier_groups
+            ON suppliers.group_id = supplier_groups.group_id;
+            
+2021-04-12 17:57:56,590: INFO: close_connection:59: close connection.
+2021-04-12 17:57:56,972: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:57:57,157: INFO: execute_sql:48: execution sucessfull: DELETE FROM supplier_groups WHERE group_id = 3;
+2021-04-12 17:57:57,159: INFO: close_connection:59: close connection.
+2021-04-12 17:57:57,574: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:57:57,781: INFO: execute_sql:48: execution sucessfull: 
+            CREATE OR REPLACE VIEW suplquery
+            AS 
+            SELECT supplier_name,supplier_groups.group_name 
+            FROM suppliers
+            INNER JOIN supplier_groups
+            ON suppliers.group_id = supplier_groups.group_id;
+            
+2021-04-12 17:57:57,982: INFO: execute_sql:48: execution sucessfull: SELECT * FROM suplquery;
+2021-04-12 17:57:57,984: INFO: close_connection:59: close connection.
+2021-04-12 17:57:58,383: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:57:58,576: INFO: execute_sql:48: execution sucessfull: CREATE SEQUENCE IF NOT EXISTS serial START 101;
+2021-04-12 17:57:58,770: INFO: execute_sql:48: execution sucessfull: SELECT nextval('serial');
+2021-04-12 17:57:58,772: INFO: close_connection:59: close connection.
+2021-04-12 17:59:35,896: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:59:36,092: INFO: execute_sql:48: execution sucessfull: CREATE TABLE IF NOT EXISTS entries(content TEXT, date TEXT);
+2021-04-12 17:59:36,287: INFO: execute_sql:48: execution sucessfull: CREATE TABLE IF NOT EXISTS users(
+        id SERIAL PRIMARY KEY,
+        first_name TEXT, 
+        surname TEXT, 
+        age INTEGER
+        );
+2021-04-12 17:59:36,485: INFO: execute_sql:48: execution sucessfull: INSERT INTO users (first_name, surname,age) VALUES ('Rolf','Smith',35);
+2021-04-12 17:59:36,683: INFO: execute_sql:48: execution sucessfull: INSERT INTO users (first_name, surname,age) VALUES ('John','Snow','19');
+2021-04-12 17:59:36,878: INFO: execute_sql:48: execution sucessfull: SELECT * FROM users WHERE first_name !='John' AND age > 19;
+2021-04-12 17:59:37,267: INFO: execute_sql:48: execution sucessfull: 
+            CREATE TABLE IF NOT EXISTS supplier_groups (
+                group_id SERIAL PRIMARY KEY,
+                group_name text NOT NULL
+            );
+            
+2021-04-12 17:59:37,461: INFO: execute_sql:48: execution sucessfull: 
+                CREATE TABLE IF NOT EXISTS suppliers (
+                supplier_id   SERIAL PRIMARY KEY,
+                supplier_name TEXT    NOT NULL,
+                group_id    INTEGER,
+                FOREIGN KEY (group_id)
+                REFERENCES supplier_groups (group_id) 
+                    ON UPDATE SET NULL
+                    ON DELETE SET NULL
+            );
+            
+2021-04-12 17:59:37,659: INFO: execute_sql:48: execution sucessfull: 
+
+            INSERT INTO supplier_groups (group_name)
+            VALUES
+            ('Domestic'),
+            ('Global'),
+            ('One-Time');
+            
+2021-04-12 17:59:37,856: INFO: execute_sql:48: execution sucessfull: INSERT INTO suppliers (supplier_name, group_id) VALUES ('HP', 2);
+2021-04-12 17:59:38,053: INFO: execute_sql:48: execution sucessfull: INSERT INTO suppliers (supplier_name, group_id) VALUES('XYZ Corp', 2);
+2021-04-12 17:59:38,184: ERROR: execute_sql:50: execution failure: INSERT INTO suppliers (supplier_name, group_id) VALUES('ABC Corp', 3);
+2021-04-12 17:59:38,186: INFO: close_connection:59: close connection.
+2021-04-12 17:59:38,588: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:59:38,783: INFO: execute_sql:48: execution sucessfull: 
+            SELECT supplier_name,supplier_groups.group_name 
+            FROM suppliers
+            INNER JOIN supplier_groups
+            ON suppliers.group_id = supplier_groups.group_id;
+            
+2021-04-12 17:59:38,786: INFO: close_connection:59: close connection.
+2021-04-12 17:59:39,181: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:59:39,372: INFO: execute_sql:48: execution sucessfull: DELETE FROM supplier_groups WHERE group_id = 3;
+2021-04-12 17:59:39,374: INFO: close_connection:59: close connection.
+2021-04-12 17:59:39,775: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:59:39,976: INFO: execute_sql:48: execution sucessfull: 
+            CREATE OR REPLACE VIEW suplquery
+            AS 
+            SELECT supplier_name,supplier_groups.group_name 
+            FROM suppliers
+            INNER JOIN supplier_groups
+            ON suppliers.group_id = supplier_groups.group_id;
+            
+2021-04-12 17:59:40,169: INFO: execute_sql:48: execution sucessfull: SELECT * FROM suplquery;
+2021-04-12 17:59:40,172: INFO: close_connection:59: close connection.
+2021-04-12 17:59:40,572: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 17:59:40,766: INFO: execute_sql:48: execution sucessfull: CREATE SEQUENCE IF NOT EXISTS serial START 101;
+2021-04-12 17:59:40,965: INFO: execute_sql:48: execution sucessfull: SELECT nextval('serial');
+2021-04-12 17:59:40,968: INFO: close_connection:59: close connection.
+2021-04-12 18:01:41,605: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 18:01:41,802: INFO: execute_sql:48: execution sucessfull: CREATE TABLE IF NOT EXISTS entries(content TEXT, date TEXT);
+2021-04-12 18:01:41,996: INFO: execute_sql:48: execution sucessfull: CREATE TABLE IF NOT EXISTS users(
+        id SERIAL PRIMARY KEY,
+        first_name TEXT, 
+        surname TEXT, 
+        age INTEGER
+        );
+2021-04-12 18:01:42,193: INFO: execute_sql:48: execution sucessfull: INSERT INTO users (first_name, surname,age) VALUES ('Rolf','Smith',35);
+2021-04-12 18:01:42,388: INFO: execute_sql:48: execution sucessfull: INSERT INTO users (first_name, surname,age) VALUES ('John','Snow','19');
+2021-04-12 18:01:42,518: ERROR: execute_sql:50: execution failure: INSERT INTO users VALUES (NULL,%s,%s,%s);
+2021-04-12 18:01:42,584: ERROR: execute_sql:50: execution failure: SELECT * FROM users WHERE first_name !='John' AND age > 19;
+2021-04-12 18:02:20,783: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 18:02:20,974: INFO: execute_sql:48: execution sucessfull: CREATE TABLE IF NOT EXISTS entries(content TEXT, date TEXT);
+2021-04-12 18:02:21,165: INFO: execute_sql:48: execution sucessfull: CREATE TABLE IF NOT EXISTS users(
+        id SERIAL PRIMARY KEY,
+        first_name TEXT, 
+        surname TEXT, 
+        age INTEGER
+        );
+2021-04-12 18:02:21,359: INFO: execute_sql:48: execution sucessfull: INSERT INTO users (first_name, surname,age) VALUES ('Rolf','Smith',35);
+2021-04-12 18:02:21,552: INFO: execute_sql:48: execution sucessfull: INSERT INTO users (first_name, surname,age) VALUES ('John','Snow','19');
+2021-04-12 18:02:21,936: INFO: execute_sql:48: execution sucessfull: SELECT * FROM users WHERE first_name !='John' AND age > 19;
+2021-04-12 18:02:22,321: INFO: execute_sql:48: execution sucessfull: 
+            CREATE TABLE IF NOT EXISTS supplier_groups (
+                group_id SERIAL PRIMARY KEY,
+                group_name text NOT NULL
+            );
+            
+2021-04-12 18:02:22,512: INFO: execute_sql:48: execution sucessfull: 
+                CREATE TABLE IF NOT EXISTS suppliers (
+                supplier_id   SERIAL PRIMARY KEY,
+                supplier_name TEXT    NOT NULL,
+                group_id    INTEGER,
+                FOREIGN KEY (group_id)
+                REFERENCES supplier_groups (group_id) 
+                    ON UPDATE SET NULL
+                    ON DELETE SET NULL
+            );
+            
+2021-04-12 18:02:22,708: INFO: execute_sql:48: execution sucessfull: 
+
+            INSERT INTO supplier_groups (group_name)
+            VALUES
+            ('Domestic'),
+            ('Global'),
+            ('One-Time');
+            
+2021-04-12 18:02:22,902: INFO: execute_sql:48: execution sucessfull: INSERT INTO suppliers (supplier_name, group_id) VALUES ('HP', 2);
+2021-04-12 18:02:23,094: INFO: execute_sql:48: execution sucessfull: INSERT INTO suppliers (supplier_name, group_id) VALUES('XYZ Corp', 2);
+2021-04-12 18:02:23,223: ERROR: execute_sql:50: execution failure: INSERT INTO suppliers (supplier_name, group_id) VALUES('ABC Corp', 3);
+2021-04-12 18:02:23,225: INFO: close_connection:59: close connection.
+2021-04-12 18:02:23,627: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 18:02:23,822: INFO: execute_sql:48: execution sucessfull: 
+            SELECT supplier_name,supplier_groups.group_name 
+            FROM suppliers
+            INNER JOIN supplier_groups
+            ON suppliers.group_id = supplier_groups.group_id;
+            
+2021-04-12 18:02:23,824: INFO: close_connection:59: close connection.
+2021-04-12 18:02:24,228: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 18:02:24,422: INFO: execute_sql:48: execution sucessfull: DELETE FROM supplier_groups WHERE group_id = 3;
+2021-04-12 18:02:24,425: INFO: close_connection:59: close connection.
+2021-04-12 18:02:24,821: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 18:02:25,020: INFO: execute_sql:48: execution sucessfull: 
+            CREATE OR REPLACE VIEW suplquery
+            AS 
+            SELECT supplier_name,supplier_groups.group_name 
+            FROM suppliers
+            INNER JOIN supplier_groups
+            ON suppliers.group_id = supplier_groups.group_id;
+            
+2021-04-12 18:02:25,211: INFO: execute_sql:48: execution sucessfull: SELECT * FROM suplquery;
+2021-04-12 18:02:25,213: INFO: close_connection:59: close connection.
+2021-04-12 18:02:25,610: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 18:02:25,801: INFO: execute_sql:48: execution sucessfull: CREATE SEQUENCE IF NOT EXISTS serial START 101;
+2021-04-12 18:02:25,992: INFO: execute_sql:48: execution sucessfull: SELECT nextval('serial');
+2021-04-12 18:02:25,995: INFO: close_connection:59: close connection.
+2021-04-12 18:06:50,748: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 18:06:50,941: INFO: execute_sql:48: execution sucessfull: CREATE TABLE IF NOT EXISTS entries(content TEXT, date TEXT);
+2021-04-12 18:06:51,131: INFO: execute_sql:48: execution sucessfull: CREATE TABLE IF NOT EXISTS users(
+        id SERIAL PRIMARY KEY,
+        first_name TEXT, 
+        surname TEXT, 
+        age INTEGER
+        );
+2021-04-12 18:06:51,325: INFO: execute_sql:48: execution sucessfull: INSERT INTO users (first_name, surname,age) VALUES ('Rolf','Smith',35);
+2021-04-12 18:06:51,518: INFO: execute_sql:48: execution sucessfull: INSERT INTO users (first_name, surname,age) VALUES ('John','Snow','19');
+2021-04-12 18:06:51,910: INFO: execute_sql:48: execution sucessfull: SELECT * FROM users WHERE first_name !='John' AND age > 19;
+2021-04-12 18:06:52,293: INFO: execute_sql:48: execution sucessfull: 
+            CREATE TABLE IF NOT EXISTS supplier_groups (
+                group_id SERIAL PRIMARY KEY,
+                group_name text NOT NULL
+            );
+            
+2021-04-12 18:06:52,484: INFO: execute_sql:48: execution sucessfull: 
+                CREATE TABLE IF NOT EXISTS suppliers (
+                supplier_id   SERIAL PRIMARY KEY,
+                supplier_name TEXT    NOT NULL,
+                group_id    INTEGER,
+                FOREIGN KEY (group_id)
+                REFERENCES supplier_groups (group_id) 
+                    ON UPDATE SET NULL
+                    ON DELETE SET NULL
+            );
+            
+2021-04-12 18:06:52,677: INFO: execute_sql:48: execution sucessfull: 
+
+            INSERT INTO supplier_groups (group_name)
+            VALUES
+            ('Domestic'),
+            ('Global'),
+            ('One-Time');
+            
+2021-04-12 18:06:52,871: INFO: execute_sql:48: execution sucessfull: INSERT INTO suppliers (supplier_name, group_id) VALUES ('HP', 2);
+2021-04-12 18:06:53,063: INFO: execute_sql:48: execution sucessfull: INSERT INTO suppliers (supplier_name, group_id) VALUES('XYZ Corp', 2);
+2021-04-12 18:06:53,191: ERROR: execute_sql:50: execution failure: INSERT INTO suppliers (supplier_name, group_id) VALUES('ABC Corp', 3);
+2021-04-12 18:06:53,193: INFO: close_connection:59: close connection.
+2021-04-12 18:06:53,596: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 18:06:53,791: INFO: execute_sql:48: execution sucessfull: 
+            SELECT supplier_name,supplier_groups.group_name 
+            FROM suppliers
+            INNER JOIN supplier_groups
+            ON suppliers.group_id = supplier_groups.group_id;
+            
+2021-04-12 18:06:53,793: INFO: close_connection:59: close connection.
+2021-04-12 18:06:54,195: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 18:06:54,389: INFO: execute_sql:48: execution sucessfull: DELETE FROM supplier_groups WHERE group_id = 3;
+2021-04-12 18:06:54,392: INFO: close_connection:59: close connection.
+2021-04-12 18:06:54,791: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 18:06:54,992: INFO: execute_sql:48: execution sucessfull: 
+            CREATE OR REPLACE VIEW suplquery
+            AS 
+            SELECT supplier_name,supplier_groups.group_name 
+            FROM suppliers
+            INNER JOIN supplier_groups
+            ON suppliers.group_id = supplier_groups.group_id;
+            
+2021-04-12 18:06:55,186: INFO: execute_sql:48: execution sucessfull: SELECT * FROM suplquery;
+2021-04-12 18:06:55,188: INFO: close_connection:59: close connection.
+2021-04-12 18:06:55,583: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 18:06:55,773: INFO: execute_sql:48: execution sucessfull: CREATE SEQUENCE IF NOT EXISTS serial START 101;
+2021-04-12 18:06:55,966: INFO: execute_sql:48: execution sucessfull: SELECT nextval('serial');
+2021-04-12 18:06:55,968: INFO: close_connection:59: close connection.
+2021-04-12 18:40:37,287: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 18:40:37,479: INFO: execute_sql:48: execution sucessfull: CREATE TABLE IF NOT EXISTS entries(content TEXT, date TEXT);
+2021-04-12 18:40:37,669: INFO: execute_sql:48: execution sucessfull: CREATE TABLE IF NOT EXISTS users(
+        id SERIAL PRIMARY KEY,
+        first_name TEXT, 
+        surname TEXT, 
+        age INTEGER
+        );
+2021-04-12 18:40:37,863: INFO: execute_sql:48: execution sucessfull: INSERT INTO users (first_name, surname,age) VALUES ('Rolf','Smith',35);
+2021-04-12 18:40:38,059: INFO: execute_sql:48: execution sucessfull: INSERT INTO users (first_name, surname,age) VALUES ('John','Snow','19');
+2021-04-12 18:40:38,441: INFO: execute_sql:48: execution sucessfull: SELECT * FROM users WHERE first_name !='John' AND age > 19;
+2021-04-12 18:40:38,823: INFO: execute_sql:48: execution sucessfull: 
+            CREATE TABLE IF NOT EXISTS supplier_groups (
+                group_id SERIAL PRIMARY KEY,
+                group_name text NOT NULL
+            );
+            
+2021-04-12 18:40:39,014: INFO: execute_sql:48: execution sucessfull: 
+                CREATE TABLE IF NOT EXISTS suppliers (
+                supplier_id   SERIAL PRIMARY KEY,
+                supplier_name TEXT    NOT NULL,
+                group_id    INTEGER,
+                FOREIGN KEY (group_id)
+                REFERENCES supplier_groups (group_id) 
+                    ON UPDATE SET NULL
+                    ON DELETE SET NULL
+            );
+            
+2021-04-12 18:40:39,209: INFO: execute_sql:48: execution sucessfull: 
+
+            INSERT INTO supplier_groups (group_name)
+            VALUES
+            ('Domestic'),
+            ('Global'),
+            ('One-Time');
+            
+2021-04-12 18:40:39,404: INFO: execute_sql:48: execution sucessfull: INSERT INTO suppliers (supplier_name, group_id) VALUES ('HP', 2);
+2021-04-12 18:40:39,598: INFO: execute_sql:48: execution sucessfull: INSERT INTO suppliers (supplier_name, group_id) VALUES('XYZ Corp', 2);
+2021-04-12 18:40:39,726: ERROR: execute_sql:50: execution failure: INSERT INTO suppliers (supplier_name, group_id) VALUES('ABC Corp', 3);
+2021-04-12 18:40:39,745: INFO: close_connection:59: close connection.
+2021-04-12 18:40:40,397: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 18:40:40,592: INFO: execute_sql:48: execution sucessfull: 
+            SELECT supplier_name,supplier_groups.group_name 
+            FROM suppliers
+            INNER JOIN supplier_groups
+            ON suppliers.group_id = supplier_groups.group_id;
+            
+2021-04-12 18:40:40,595: INFO: close_connection:59: close connection.
+2021-04-12 18:40:40,999: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 18:40:41,194: INFO: execute_sql:48: execution sucessfull: DELETE FROM supplier_groups WHERE group_id = 3;
+2021-04-12 18:40:41,196: INFO: close_connection:59: close connection.
+2021-04-12 18:40:41,598: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 18:40:41,797: INFO: execute_sql:48: execution sucessfull: 
+            CREATE OR REPLACE VIEW suplquery
+            AS 
+            SELECT supplier_name,supplier_groups.group_name 
+            FROM suppliers
+            INNER JOIN supplier_groups
+            ON suppliers.group_id = supplier_groups.group_id;
+            
+2021-04-12 18:40:41,991: INFO: execute_sql:48: execution sucessfull: SELECT * FROM suplquery;
+2021-04-12 18:40:41,994: INFO: close_connection:59: close connection.
+2021-04-12 18:40:42,390: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 18:40:42,586: INFO: execute_sql:48: execution sucessfull: CREATE SEQUENCE IF NOT EXISTS incrementor START 101;
+2021-04-12 18:40:42,779: INFO: execute_sql:48: execution sucessfull: SELECT nextval('incrementor');
+2021-04-12 18:40:42,969: INFO: execute_sql:48: execution sucessfull: SELECT nextval('incrementor');
+2021-04-12 18:40:42,972: INFO: close_connection:59: close connection.
+2021-04-12 18:41:34,990: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 18:41:35,182: INFO: execute_sql:48: execution sucessfull: CREATE TABLE IF NOT EXISTS entries(content TEXT, date TEXT);
+2021-04-12 18:41:35,372: INFO: execute_sql:48: execution sucessfull: CREATE TABLE IF NOT EXISTS users(
+        id SERIAL PRIMARY KEY,
+        first_name TEXT, 
+        surname TEXT, 
+        age INTEGER
+        );
+2021-04-12 18:41:35,567: INFO: execute_sql:48: execution sucessfull: INSERT INTO users (first_name, surname,age) VALUES ('Rolf','Smith',35);
+2021-04-12 18:41:35,761: INFO: execute_sql:48: execution sucessfull: INSERT INTO users (first_name, surname,age) VALUES ('John','Snow','19');
+2021-04-12 18:41:36,142: INFO: execute_sql:48: execution sucessfull: SELECT * FROM users WHERE first_name !='John' AND age > 19;
+2021-04-12 18:41:36,524: INFO: execute_sql:48: execution sucessfull: 
+            CREATE TABLE IF NOT EXISTS supplier_groups (
+                group_id SERIAL PRIMARY KEY,
+                group_name text NOT NULL
+            );
+            
+2021-04-12 18:41:36,715: INFO: execute_sql:48: execution sucessfull: 
+                CREATE TABLE IF NOT EXISTS suppliers (
+                supplier_id   SERIAL PRIMARY KEY,
+                supplier_name TEXT    NOT NULL,
+                group_id    INTEGER,
+                FOREIGN KEY (group_id)
+                REFERENCES supplier_groups (group_id) 
+                    ON UPDATE SET NULL
+                    ON DELETE SET NULL
+            );
+            
+2021-04-12 18:41:36,909: INFO: execute_sql:48: execution sucessfull: 
+
+            INSERT INTO supplier_groups (group_name)
+            VALUES
+            ('Domestic'),
+            ('Global'),
+            ('One-Time');
+            
+2021-04-12 18:41:37,103: INFO: execute_sql:48: execution sucessfull: INSERT INTO suppliers (supplier_name, group_id) VALUES ('HP', 2);
+2021-04-12 18:41:37,297: INFO: execute_sql:48: execution sucessfull: INSERT INTO suppliers (supplier_name, group_id) VALUES('XYZ Corp', 2);
+2021-04-12 18:41:37,424: ERROR: execute_sql:50: execution failure: INSERT INTO suppliers (supplier_name, group_id) VALUES('ABC Corp', 3);
+2021-04-12 18:41:37,427: INFO: close_connection:59: close connection.
+2021-04-12 18:41:37,840: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 18:41:38,037: INFO: execute_sql:48: execution sucessfull: 
+            SELECT supplier_name,supplier_groups.group_name 
+            FROM suppliers
+            INNER JOIN supplier_groups
+            ON suppliers.group_id = supplier_groups.group_id;
+            
+2021-04-12 18:41:38,040: INFO: close_connection:59: close connection.
+2021-04-12 18:41:38,533: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 18:41:38,735: INFO: execute_sql:48: execution sucessfull: DELETE FROM supplier_groups WHERE group_id = 3;
+2021-04-12 18:41:38,738: INFO: close_connection:59: close connection.
+2021-04-12 18:41:39,134: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 18:41:39,334: INFO: execute_sql:48: execution sucessfull: 
+            CREATE OR REPLACE VIEW suplquery
+            AS 
+            SELECT supplier_name,supplier_groups.group_name 
+            FROM suppliers
+            INNER JOIN supplier_groups
+            ON suppliers.group_id = supplier_groups.group_id;
+            
+2021-04-12 18:41:39,527: INFO: execute_sql:48: execution sucessfull: SELECT * FROM suplquery;
+2021-04-12 18:41:39,530: INFO: close_connection:59: close connection.
+2021-04-12 18:41:39,933: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 18:41:40,131: INFO: execute_sql:48: execution sucessfull: CREATE SEQUENCE IF NOT EXISTS incrementor START 101;
+2021-04-12 18:41:40,261: ERROR: execute_sql:50: execution failure: SELECT currval('incrementor');
+2021-04-12 18:42:43,761: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 18:42:43,964: INFO: execute_sql:48: execution sucessfull: CREATE TABLE IF NOT EXISTS entries(content TEXT, date TEXT);
+2021-04-12 18:42:44,171: INFO: execute_sql:48: execution sucessfull: CREATE TABLE IF NOT EXISTS users(
+        id SERIAL PRIMARY KEY,
+        first_name TEXT, 
+        surname TEXT, 
+        age INTEGER
+        );
+2021-04-12 18:42:44,368: INFO: execute_sql:48: execution sucessfull: INSERT INTO users (first_name, surname,age) VALUES ('Rolf','Smith',35);
+2021-04-12 18:42:44,563: INFO: execute_sql:48: execution sucessfull: INSERT INTO users (first_name, surname,age) VALUES ('John','Snow','19');
+2021-04-12 18:42:44,950: INFO: execute_sql:48: execution sucessfull: SELECT * FROM users WHERE first_name !='John' AND age > 19;
+2021-04-12 18:42:45,349: INFO: execute_sql:48: execution sucessfull: 
+            CREATE TABLE IF NOT EXISTS supplier_groups (
+                group_id SERIAL PRIMARY KEY,
+                group_name text NOT NULL
+            );
+            
+2021-04-12 18:42:45,556: INFO: execute_sql:48: execution sucessfull: 
+                CREATE TABLE IF NOT EXISTS suppliers (
+                supplier_id   SERIAL PRIMARY KEY,
+                supplier_name TEXT    NOT NULL,
+                group_id    INTEGER,
+                FOREIGN KEY (group_id)
+                REFERENCES supplier_groups (group_id) 
+                    ON UPDATE SET NULL
+                    ON DELETE SET NULL
+            );
+            
+2021-04-12 18:42:45,752: INFO: execute_sql:48: execution sucessfull: 
+
+            INSERT INTO supplier_groups (group_name)
+            VALUES
+            ('Domestic'),
+            ('Global'),
+            ('One-Time');
+            
+2021-04-12 18:42:45,948: INFO: execute_sql:48: execution sucessfull: INSERT INTO suppliers (supplier_name, group_id) VALUES ('HP', 2);
+2021-04-12 18:42:46,143: INFO: execute_sql:48: execution sucessfull: INSERT INTO suppliers (supplier_name, group_id) VALUES('XYZ Corp', 2);
+2021-04-12 18:42:46,341: INFO: execute_sql:48: execution sucessfull: INSERT INTO suppliers (supplier_name, group_id) VALUES('ABC Corp', 3);
+2021-04-12 18:42:46,343: INFO: close_connection:59: close connection.
+2021-04-12 18:42:46,742: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 18:42:46,934: INFO: execute_sql:48: execution sucessfull: 
+            SELECT supplier_name,supplier_groups.group_name 
+            FROM suppliers
+            INNER JOIN supplier_groups
+            ON suppliers.group_id = supplier_groups.group_id;
+            
+2021-04-12 18:42:46,936: INFO: close_connection:59: close connection.
+2021-04-12 18:42:47,343: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 18:42:47,540: INFO: execute_sql:48: execution sucessfull: DELETE FROM supplier_groups WHERE group_id = 3;
+2021-04-12 18:42:47,543: INFO: close_connection:59: close connection.
+2021-04-12 18:42:47,944: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 18:42:48,144: INFO: execute_sql:48: execution sucessfull: 
+            CREATE OR REPLACE VIEW suplquery
+            AS 
+            SELECT supplier_name,supplier_groups.group_name 
+            FROM suppliers
+            INNER JOIN supplier_groups
+            ON suppliers.group_id = supplier_groups.group_id;
+            
+2021-04-12 18:42:48,337: INFO: execute_sql:48: execution sucessfull: SELECT * FROM suplquery;
+2021-04-12 18:42:48,339: INFO: close_connection:59: close connection.
+2021-04-12 18:42:48,737: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 18:42:48,932: INFO: execute_sql:48: execution sucessfull: CREATE SEQUENCE IF NOT EXISTS incrementor START 101;
+2021-04-12 18:42:49,059: ERROR: execute_sql:50: execution failure: SELECT currval('incrementor');
+2021-04-12 18:44:12,691: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 18:44:12,902: INFO: execute_sql:48: execution sucessfull: CREATE TABLE IF NOT EXISTS entries(content TEXT, date TEXT);
+2021-04-12 18:44:13,111: INFO: execute_sql:48: execution sucessfull: CREATE TABLE IF NOT EXISTS users(
+        id SERIAL PRIMARY KEY,
+        first_name TEXT, 
+        surname TEXT, 
+        age INTEGER
+        );
+2021-04-12 18:44:13,305: INFO: execute_sql:48: execution sucessfull: INSERT INTO users (first_name, surname,age) VALUES ('Rolf','Smith',35);
+2021-04-12 18:44:13,499: INFO: execute_sql:48: execution sucessfull: INSERT INTO users (first_name, surname,age) VALUES ('John','Snow','19');
+2021-04-12 18:44:13,883: INFO: execute_sql:48: execution sucessfull: SELECT * FROM users WHERE first_name !='John' AND age > 19;
+2021-04-12 18:44:14,281: INFO: execute_sql:48: execution sucessfull: 
+            CREATE TABLE IF NOT EXISTS supplier_groups (
+                group_id SERIAL PRIMARY KEY,
+                group_name text NOT NULL
+            );
+            
+2021-04-12 18:44:14,485: INFO: execute_sql:48: execution sucessfull: 
+                CREATE TABLE IF NOT EXISTS suppliers (
+                supplier_id   SERIAL PRIMARY KEY,
+                supplier_name TEXT    NOT NULL,
+                group_id    INTEGER,
+                FOREIGN KEY (group_id)
+                REFERENCES supplier_groups (group_id) 
+                    ON UPDATE SET NULL
+                    ON DELETE SET NULL
+            );
+            
+2021-04-12 18:44:14,678: INFO: execute_sql:48: execution sucessfull: 
+
+            INSERT INTO supplier_groups (group_name)
+            VALUES
+            ('Domestic'),
+            ('Global'),
+            ('One-Time');
+            
+2021-04-12 18:44:14,872: INFO: execute_sql:48: execution sucessfull: INSERT INTO suppliers (supplier_name, group_id) VALUES ('HP', 2);
+2021-04-12 18:44:15,066: INFO: execute_sql:48: execution sucessfull: INSERT INTO suppliers (supplier_name, group_id) VALUES('XYZ Corp', 2);
+2021-04-12 18:44:15,263: INFO: execute_sql:48: execution sucessfull: INSERT INTO suppliers (supplier_name, group_id) VALUES('ABC Corp', 3);
+2021-04-12 18:44:15,265: INFO: close_connection:59: close connection.
+2021-04-12 18:44:15,811: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 18:44:16,002: INFO: execute_sql:48: execution sucessfull: 
+            SELECT supplier_name,supplier_groups.group_name 
+            FROM suppliers
+            INNER JOIN supplier_groups
+            ON suppliers.group_id = supplier_groups.group_id;
+            
+2021-04-12 18:44:16,004: INFO: close_connection:59: close connection.
+2021-04-12 18:44:16,411: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 18:44:16,611: INFO: execute_sql:48: execution sucessfull: DELETE FROM supplier_groups WHERE group_id = 3;
+2021-04-12 18:44:16,613: INFO: close_connection:59: close connection.
+2021-04-12 18:44:17,031: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 18:44:17,240: INFO: execute_sql:48: execution sucessfull: 
+            CREATE OR REPLACE VIEW suplquery
+            AS 
+            SELECT supplier_name,supplier_groups.group_name 
+            FROM suppliers
+            INNER JOIN supplier_groups
+            ON suppliers.group_id = supplier_groups.group_id;
+            
+2021-04-12 18:44:17,441: INFO: execute_sql:48: execution sucessfull: SELECT * FROM suplquery;
+2021-04-12 18:44:17,444: INFO: close_connection:59: close connection.
+2021-04-12 18:44:17,854: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 18:44:18,064: INFO: execute_sql:48: execution sucessfull: CREATE SEQUENCE IF NOT EXISTS incrementor START 101;
+2021-04-12 18:44:18,197: ERROR: execute_sql:50: execution failure: SELECT currval('my_sequence');
+2021-04-12 18:46:08,809: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 18:46:09,003: INFO: execute_sql:48: execution sucessfull: CREATE TABLE IF NOT EXISTS entries(content TEXT, date TEXT);
+2021-04-12 18:46:09,195: INFO: execute_sql:48: execution sucessfull: CREATE TABLE IF NOT EXISTS users(
+        id SERIAL PRIMARY KEY,
+        first_name TEXT, 
+        surname TEXT, 
+        age INTEGER
+        );
+2021-04-12 18:46:09,393: INFO: execute_sql:48: execution sucessfull: INSERT INTO users (first_name, surname,age) VALUES ('Rolf','Smith',35);
+2021-04-12 18:46:09,588: INFO: execute_sql:48: execution sucessfull: INSERT INTO users (first_name, surname,age) VALUES ('John','Snow','19');
+2021-04-12 18:46:09,975: INFO: execute_sql:48: execution sucessfull: SELECT * FROM users WHERE first_name !='John' AND age > 19;
+2021-04-12 18:46:10,363: INFO: execute_sql:48: execution sucessfull: 
+            CREATE TABLE IF NOT EXISTS supplier_groups (
+                group_id SERIAL PRIMARY KEY,
+                group_name text NOT NULL
+            );
+            
+2021-04-12 18:46:10,556: INFO: execute_sql:48: execution sucessfull: 
+                CREATE TABLE IF NOT EXISTS suppliers (
+                supplier_id   SERIAL PRIMARY KEY,
+                supplier_name TEXT    NOT NULL,
+                group_id    INTEGER,
+                FOREIGN KEY (group_id)
+                REFERENCES supplier_groups (group_id) 
+                    ON UPDATE SET NULL
+                    ON DELETE SET NULL
+            );
+            
+2021-04-12 18:46:10,751: INFO: execute_sql:48: execution sucessfull: 
+
+            INSERT INTO supplier_groups (group_name)
+            VALUES
+            ('Domestic'),
+            ('Global'),
+            ('One-Time');
+            
+2021-04-12 18:46:10,953: INFO: execute_sql:48: execution sucessfull: INSERT INTO suppliers (supplier_name, group_id) VALUES ('HP', 2);
+2021-04-12 18:46:11,148: INFO: execute_sql:48: execution sucessfull: INSERT INTO suppliers (supplier_name, group_id) VALUES('XYZ Corp', 2);
+2021-04-12 18:46:11,277: ERROR: execute_sql:50: execution failure: INSERT INTO suppliers (supplier_name, group_id) VALUES('ABC Corp', 3);
+2021-04-12 18:46:11,279: INFO: close_connection:59: close connection.
+2021-04-12 18:46:11,899: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 18:46:12,093: INFO: execute_sql:48: execution sucessfull: 
+            SELECT supplier_name,supplier_groups.group_name 
+            FROM suppliers
+            INNER JOIN supplier_groups
+            ON suppliers.group_id = supplier_groups.group_id;
+            
+2021-04-12 18:46:12,097: INFO: close_connection:59: close connection.
+2021-04-12 18:46:12,500: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 18:46:12,694: INFO: execute_sql:48: execution sucessfull: DELETE FROM supplier_groups WHERE group_id = 3;
+2021-04-12 18:46:12,697: INFO: close_connection:59: close connection.
+2021-04-12 18:46:13,099: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 18:46:13,299: INFO: execute_sql:48: execution sucessfull: 
+            CREATE OR REPLACE VIEW suplquery
+            AS 
+            SELECT supplier_name,supplier_groups.group_name 
+            FROM suppliers
+            INNER JOIN supplier_groups
+            ON suppliers.group_id = supplier_groups.group_id;
+            
+2021-04-12 18:46:13,492: INFO: execute_sql:48: execution sucessfull: SELECT * FROM suplquery;
+2021-04-12 18:46:13,495: INFO: close_connection:59: close connection.
+2021-04-12 18:46:13,889: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 18:46:14,080: INFO: execute_sql:48: execution sucessfull: CREATE SEQUENCE IF NOT EXISTS incrementor START 101;
+2021-04-12 18:46:14,207: ERROR: execute_sql:50: execution failure: SELECT nextval('my_sequence');
+2021-04-12 18:46:36,592: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 18:46:36,785: INFO: execute_sql:48: execution sucessfull: CREATE TABLE IF NOT EXISTS entries(content TEXT, date TEXT);
+2021-04-12 18:46:36,979: INFO: execute_sql:48: execution sucessfull: CREATE TABLE IF NOT EXISTS users(
+        id SERIAL PRIMARY KEY,
+        first_name TEXT, 
+        surname TEXT, 
+        age INTEGER
+        );
+2021-04-12 18:46:37,175: INFO: execute_sql:48: execution sucessfull: INSERT INTO users (first_name, surname,age) VALUES ('Rolf','Smith',35);
+2021-04-12 18:46:37,371: INFO: execute_sql:48: execution sucessfull: INSERT INTO users (first_name, surname,age) VALUES ('John','Snow','19');
+2021-04-12 18:46:37,762: INFO: execute_sql:48: execution sucessfull: SELECT * FROM users WHERE first_name !='John' AND age > 19;
+2021-04-12 18:46:38,148: INFO: execute_sql:48: execution sucessfull: 
+            CREATE TABLE IF NOT EXISTS supplier_groups (
+                group_id SERIAL PRIMARY KEY,
+                group_name text NOT NULL
+            );
+            
+2021-04-12 18:46:38,342: INFO: execute_sql:48: execution sucessfull: 
+                CREATE TABLE IF NOT EXISTS suppliers (
+                supplier_id   SERIAL PRIMARY KEY,
+                supplier_name TEXT    NOT NULL,
+                group_id    INTEGER,
+                FOREIGN KEY (group_id)
+                REFERENCES supplier_groups (group_id) 
+                    ON UPDATE SET NULL
+                    ON DELETE SET NULL
+            );
+            
+2021-04-12 18:46:38,541: INFO: execute_sql:48: execution sucessfull: 
+
+            INSERT INTO supplier_groups (group_name)
+            VALUES
+            ('Domestic'),
+            ('Global'),
+            ('One-Time');
+            
+2021-04-12 18:46:38,739: INFO: execute_sql:48: execution sucessfull: INSERT INTO suppliers (supplier_name, group_id) VALUES ('HP', 2);
+2021-04-12 18:46:38,935: INFO: execute_sql:48: execution sucessfull: INSERT INTO suppliers (supplier_name, group_id) VALUES('XYZ Corp', 2);
+2021-04-12 18:46:39,066: ERROR: execute_sql:50: execution failure: INSERT INTO suppliers (supplier_name, group_id) VALUES('ABC Corp', 3);
+2021-04-12 18:46:39,068: INFO: close_connection:59: close connection.
+2021-04-12 18:46:39,596: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 18:46:39,787: INFO: execute_sql:48: execution sucessfull: 
+            SELECT supplier_name,supplier_groups.group_name 
+            FROM suppliers
+            INNER JOIN supplier_groups
+            ON suppliers.group_id = supplier_groups.group_id;
+            
+2021-04-12 18:46:39,789: INFO: close_connection:59: close connection.
+2021-04-12 18:46:40,197: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 18:46:40,394: INFO: execute_sql:48: execution sucessfull: DELETE FROM supplier_groups WHERE group_id = 3;
+2021-04-12 18:46:40,396: INFO: close_connection:59: close connection.
+2021-04-12 18:46:40,804: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 18:46:41,006: INFO: execute_sql:48: execution sucessfull: 
+            CREATE OR REPLACE VIEW suplquery
+            AS 
+            SELECT supplier_name,supplier_groups.group_name 
+            FROM suppliers
+            INNER JOIN supplier_groups
+            ON suppliers.group_id = supplier_groups.group_id;
+            
+2021-04-12 18:46:41,202: INFO: execute_sql:48: execution sucessfull: SELECT * FROM suplquery;
+2021-04-12 18:46:41,204: INFO: close_connection:59: close connection.
+2021-04-12 18:46:41,739: INFO: open_connection:33: connection establisted to postgres://ldeykkhn:NmGZGNkcYkiydN7Dq6tyUfYAWWt0q-Jp@tai.db.elephantsql.com:5432/ldeykkhn
+2021-04-12 18:46:41,930: INFO: execute_sql:48: execution sucessfull: CREATE SEQUENCE IF NOT EXISTS my_sequence START 101;
+2021-04-12 18:46:42,118: INFO: execute_sql:48: execution sucessfull: SELECT nextval('my_sequence');
+2021-04-12 18:46:42,121: INFO: close_connection:59: close connection.
