@@ -148,6 +148,19 @@ if __name__=="__main__":
             """
     commandcallview = "SELECT * FROM suplquery;"
 
+    commandwith="""
+    WITH cte_count_users_by_groups AS (
+        SELECT group_id,
+            COUNT(supplier_id) user_count
+        FROM   suppliers
+        GROUP  BY group_id
+    )
+    SELECT supplier_groups.group_id,
+           group_name,
+           user_count
+    FROM supplier_groups
+        LEFT JOIN cte_count_users_by_groups USING (group_id); 
+        """
 
     create_sequence="CREATE SEQUENCE IF NOT EXISTS my_sequence START 101;"
     command_callnextsequence="SELECT nextval('my_sequence');"
@@ -201,6 +214,16 @@ if __name__=="__main__":
     for row in rows:
         print(row)
     sq.close_connection()    
+    
+    
+    
+    sq.open_connection()
+    rows=sq.execute_sql(commandwith)
+    for row in rows:
+        print(row)
+    sq.close_connection() 
+    
+    
 
     logging.shutdown() #release logging handlers
 
