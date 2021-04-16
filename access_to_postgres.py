@@ -12,8 +12,12 @@ import os
 
 from dotenv import load_dotenv  #to load database secrets stored in a file as environment variables
 
+import functools
+
+#template for building more complex decorators
 
 
+            
 class PostgresAccess():
     def __init__(self, dbpath):
         self.dbpath = dbpath
@@ -22,43 +26,49 @@ class PostgresAccess():
         logging.basicConfig(format='%(asctime)s: %(levelname)s: %(funcName)s:%(lineno)d: %(message)s',
                             level=logging.INFO, handlers=[logging.FileHandler("program_log.log"), logging.StreamHandler()])
 
+
     def open_connection(self):
-        # open and if not exxst create and open
-        try:
-            self.connection = psycopg2.connect(self.dbpath)
-            self.cursor=self.connection.cursor()
-            #foreign_keys = ON is necessary to do necessary action after deleting/updating a row containing a referenced foreign key. 
-            #self.execute_sql("PRAGMA foreign_keys = ON")
-            
-            logging.info(f"connection establisted to {self.dbpath}")
-        except psycopg2.Error:
-            logging.error(f"connection failure to {self.dbpath}")
+        if self.connection == None:
+            # open and if not exxst create and open
+            try:
+                self.connection = psycopg2.connect(self.dbpath)
+                self.cursor=self.connection.cursor()
+                #foreign_keys = ON is necessary to do necessary action after deleting/updating a row containing a referenced foreign key. 
+                #self.execute_sql("PRAGMA foreign_keys = ON")
+                
+                logging.info(f"connection establisted to {self.dbpath}")
+            except psycopg2.Error:
+                logging.error(f"connection failure to {self.dbpath}")
 
-        
+
     def execute_sql(self, sql_command: str, fields=None):
-        """this method prevents sql injection for sqlite"""
-        try:
-            #create a cursor, a transaction and commit due to with context manager   
-         if fields:
-            self.cursor.execute(sql_command,fields)
-            self.connection.commit()
-         else:
-            self.cursor.execute(sql_command)
-            self.connection.commit()
-            logging.info(f"execution sucessfull: {sql_command}")
-        except psycopg2.Error:
-            logging.error(f"execution failure: {sql_command}")
-
-        return self.cursor
+        if self.connection != None:
+            """this method prevents sql injection for sqlite"""
+            try:
+                #create a cursor, a transaction and commit due to with context manager   
+             if fields:
+                self.cursor.execute(sql_command,fields)
+                self.connection.commit()
+             else:
+                self.cursor.execute(sql_command)
+                self.connection.commit()
+                logging.info(f"execution sucessfull: {sql_command}")
+            except psycopg2.Error:
+                logging.error(f"execution failure: {sql_command}")
+    
+            return self.cursor
+        else:
+            return []
 
     def close_connection(self):
-        try:
-            self.connection.close()
-            self.connection=None
-            self.connection=None
-            logging.info(f"close connection.")
-        except psycopg2.Error:
-            logging.warning(f"close connection.")
+        if self.connection != None:
+            try:
+                self.connection.close()
+                self.connection=None
+                self.cursor=None
+                logging.info(f"close connection.")
+            except psycopg2.Error:
+                logging.warning(f"close connection.")
 
 if __name__=="__main__":
     
@@ -166,6 +176,8 @@ if __name__=="__main__":
     command_callnextsequence="SELECT nextval('my_sequence');"
 
     sq = PostgresAccess(url)
+    sq2 = PostgresAccess(url)
+    
     sq.open_connection()
 
     sq.execute_sql(command1)
@@ -217,11 +229,11 @@ if __name__=="__main__":
     
     
     
-    sq.open_connection()
-    rows=sq.execute_sql(commandwith)
+    sq2.open_connection()
+    rows=sq2.execute_sql(commandwith)
     for row in rows:
         print(row)
-    sq.close_connection() 
+    sq2.close_connection() 
     
     
 
