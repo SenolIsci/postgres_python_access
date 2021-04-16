@@ -16,6 +16,8 @@ import functools
 
 #template for building more complex decorators
 
+from contextlib import contextmanager
+
 
             
 class PostgresAccess():
@@ -26,6 +28,10 @@ class PostgresAccess():
         logging.basicConfig(format='%(asctime)s: %(levelname)s: %(funcName)s:%(lineno)d: %(message)s',
                             level=logging.INFO, handlers=[logging.FileHandler("program_log.log"), logging.StreamHandler()])
 
+
+    def __repr__(self):
+        return f"Database access: \n Database: {self.dbpath}\n conncetion status:{self.connection}\n cursor.status: {self.cursor}"
+        
 
     def open_connection(self):
         if self.connection == None:
@@ -69,6 +75,15 @@ class PostgresAccess():
                 logging.info(f"close connection.")
             except psycopg2.Error:
                 logging.warning(f"close connection.")
+
+    #create a connection managger
+    @contextmanager
+    def session(self):
+
+        try:
+            yield self.open_connection()
+        finally:
+            self.close_connection()
 
 if __name__=="__main__":
     
@@ -178,64 +193,56 @@ if __name__=="__main__":
     sq = PostgresAccess(url)
     sq2 = PostgresAccess(url)
     
-    sq.open_connection()
+    with sq.session():
 
-    sq.execute_sql(command1)
-    sq.execute_sql(command2)
+        sq.execute_sql(command1)
+        sq.execute_sql(command2)
+    
+        sq.execute_sql(command3)
+        sq.execute_sql(command4)
+        sq.execute_sql(command5, command5_tuple)
+        rows=sq.execute_sql(command10)
+        for row in rows:
+            print(row)
+        rows = sq.execute_sql(command11, command11_tuple)
+        for row in rows:
+            print(row)
+        sq.execute_sql(command00)
+        sq.execute_sql(command01)
+        sq.execute_sql(command02)
+        sq.execute_sql(command03)
+        sq.execute_sql(command04)
+        sq.execute_sql(command05)
 
-    sq.execute_sql(command3)
-    sq.execute_sql(command4)
-    sq.execute_sql(command5, command5_tuple)
-    rows=sq.execute_sql(command10)
-    for row in rows:
-        print(row)
-    rows = sq.execute_sql(command11, command11_tuple)
-    for row in rows:
-        print(row)
+
+    with sq.session():
+        rows = sq.execute_sql(commandjoin)
+        for row in rows:
+            print(row)
+  
+    with sq.session():
+        sq.execute_sql(command000)
 
 
-    sq.execute_sql(command00)
-    sq.execute_sql(command01)
-    sq.execute_sql(command02)
-    sq.execute_sql(command03)
-    sq.execute_sql(command04)
-    sq.execute_sql(command05)
-    sq.close_connection()
+    with sq.session():
+        sq.execute_sql(commandcreateview)
+        rows=sq.execute_sql(commandcallview)
+        for row in rows:
+            print(row)        
+    
+    with sq.session():
+        sq.execute_sql(create_sequence)
+    
+        rows=sq.execute_sql(command_callnextsequence)
+        for row in rows:
+            print(row)
 
-    sq.open_connection()
-    rows = sq.execute_sql(commandjoin)
-    for row in rows:
-        print(row)
-    sq.close_connection()
     
-    sq.open_connection()
-    sq.execute_sql(command000)
-    sq.close_connection()
-
-    sq.open_connection()
-    sq.execute_sql(commandcreateview)
-    rows=sq.execute_sql(commandcallview)
-    for row in rows:
-        print(row)
-    sq.close_connection()
-    
-    sq.open_connection()
-    sq.execute_sql(create_sequence)
-
-    rows=sq.execute_sql(command_callnextsequence)
-    for row in rows:
-        print(row)
-    sq.close_connection()    
-    
-    
-    
-    sq2.open_connection()
-    rows=sq2.execute_sql(commandwith)
-    for row in rows:
-        print(row)
-    sq2.close_connection() 
-    
-    
+    with sq2.session():
+        rows=sq2.execute_sql(commandwith)
+        for row in rows:
+            print(row)
+   
 
     logging.shutdown() #release logging handlers
 
